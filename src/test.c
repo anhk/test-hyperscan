@@ -82,7 +82,7 @@ int main(int argc, char **argv)
 
     err = hs_scan(db_block, buff, strlen(buff), 0, scratch, onMatch, &matchCount);
     if (err != HS_SUCCESS) {
-        dd("ERROR: Unable to scan packet. Exiting.");
+        dd("ERROR: Unable to scan. Exiting.");
         exit(-1);
     }
 
