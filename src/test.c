@@ -29,7 +29,6 @@ char buff[] = "http://foobar";
  * HS_FLAG_UTF8         :
  * HS_FLAG_UCP          :
  **/
-
 static const unsigned int flags[] = {
     HS_FLAG_CASELESS,
     HS_FLAG_CASELESS
@@ -45,7 +44,7 @@ static int onMatch(unsigned int id, unsigned long long from, unsigned long long 
         unsigned int flags, void *ctx)
 {
     dd("id=%d, from=%llx, to=%llu, flags=%x, ctx=%p",
-        id, from, to, flags, ctx);
+            id, from, to, flags, ctx);
     return 0; // continue matching
 }
 
@@ -86,6 +85,9 @@ int main(int argc, char **argv)
         dd("ERROR: Unable to scan packet. Exiting.");
         exit(-1);
     }
+
+    hs_free_scratch(scratch);
+    hs_free_database(db_block);
 
     return 0;
 }

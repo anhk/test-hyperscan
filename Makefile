@@ -7,7 +7,7 @@
 EXEC = test
 
 CFLAGS = -g -O0 -Wall -Werror -Iinc
-LDFLAGS = -Llib -lhs
+LDFLAGS = -Wl,-rpath,$(shell pwd)/lib -Llib -lhs
 CC = gcc
 
 
