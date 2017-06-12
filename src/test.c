@@ -10,8 +10,7 @@ static const char *patterns[] = {
     "http://.*bar",
 };
 
-char buff[] = "http://foobar";
-
+char buff[] = "333http://foobar";
 
 #define dd(fmt, ...) do {               \
     fprintf(stderr, "[%s:%d] "fmt"\n",  \
@@ -51,12 +50,11 @@ static int onMatch(unsigned int id, unsigned long long from, unsigned long long 
 
 int main(int argc, char **argv)
 {
-    hs_database_t *db_block;
-    hs_compile_error_t *compileErr;
+    hs_database_t *db_block = NULL;
+    hs_compile_error_t *compileErr = NULL;
     hs_error_t err;
 
-    hs_scratch_t *scratch;
-    size_t matchCount;
+    hs_scratch_t *scratch = NULL;
 
     err = hs_compile_multi(patterns, flags, ids,
             sizeof(patterns) / sizeof(patterns[0]),
@@ -80,7 +78,7 @@ int main(int argc, char **argv)
         exit(-1);
     }
 
-    err = hs_scan(db_block, buff, strlen(buff), 0, scratch, onMatch, &matchCount);
+    err = hs_scan(db_block, buff, strlen(buff), 0, scratch, onMatch, NULL);
     if (err != HS_SUCCESS) {
         dd("ERROR: Unable to scan. Exiting.");
         exit(-1);
